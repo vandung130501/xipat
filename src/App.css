@@ -1,0 +1,51 @@
+.action {
+  height: 40px;
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+}
+.button {
+  display: flex;
+  gap: 10px;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: start;
+  max-width: 800px;
+  /* min-width: 489px; */
+  margin: 0 auto;
+  height: 200vh;
+}
+.flex-start {
+  display: inline-flex;
+  gap: 5px;
+}
+.d-flex {
+  display: grid;
+  grid-template-columns: 92fr 8fr;
+  align-items: end;
+}
+.color {
+  display: flex;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+}
+.color-picker {
+  border: 1px solid #8A8A8A;
+  border-left: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 33px;
+  width: 35px;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
