@@ -1,14 +1,18 @@
-export const options = [
+export const OPTIONS = [
   { label: "Calendar", value: "calendar" },
   { label: "Date List", value: "date_list" },
 ];
-export const dateFormatOptions = [
+export const OPTION_DEFAULT = [
+  { label: "Default", value: "Default" },
+  { label: "Date List", value: "date_list" },
+];
+export const DATE_FORMAT_OPTIONS = [
   { label: "dd", value: "dd" },
   { label: "dd/mm", value: "dd/mm" },
   { label: "dd/mm/yyyy", value: "dd/mm/yyyy" },
 
 ];
-export const daysOfWeekOptions = [
+export const DAYS_OF_WEEKS = [
   { label: "Monday", value: "monday" },
   { label: "Tuesday", value: "tuesday" },
   { label: "Wednesday", value: "wednesday" },
@@ -18,7 +22,7 @@ export const daysOfWeekOptions = [
   { label: "Sunday", value: "sunday" },
 ];
 
-export const humanLanguagesOptions = [
+export const LANGUGES = [
   { label: "English", value: "english" },
   { label: "Mandarin Chinese", value: "mandarin" },
   { label: "Spanish", value: "spanish" },
@@ -97,3 +101,4 @@ export const initWidgetPosition = {
   isShow: false,
   isRequired: false
 }
+export const GRID_TWO_COLUMNS = { xs: 6, sm: 6, md: 6, lg: 6, xl: 6 };
