@@ -4,6 +4,7 @@
   background-color: black;
   position: fixed;
   z-index: 999;
+  top: 0;
   display: flex;
   justify-content: space-between;
   padding: 0px 10px;
@@ -20,12 +21,18 @@
   justify-content: start;
   max-width: 800px;
   /* min-width: 489px; */
-  margin: 0 auto;
+  margin: 40px auto;
   height: 200vh;
 }
 .flex-start {
   display: inline-flex;
   gap: 5px;
+}
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  cursor: pointer;
 }
 .d-flex {
   /* display: grid;
@@ -63,4 +70,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+.mb-20{
+  margin-bottom: 20px;
 }
