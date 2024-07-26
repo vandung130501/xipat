@@ -1,5 +1,5 @@
-import { Button, Card, Icon, Tabs, Text } from "@shopify/polaris";
-import { TextIcon } from "@shopify/polaris-icons";
+import { Button, Card, Collapsible, Icon, Tabs, Text } from "@shopify/polaris";
+import { TextIcon, CaretDownIcon, CaretUpIcon } from "@shopify/polaris-icons";
 import { useEffect, useState } from "react";
 import "./App.css";
 import {
@@ -32,6 +32,7 @@ const TAB_VALUE = {
 };
 function App() {
   const [selectedTab, setSelectedTab] = useState(TAB_VALUE.DELIVERY_DATE);
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const [showButton, setShowButton] = useState(false);
   const [widgetPosition, setWidgetPosition] = useState(initWidgetPosition);
   const [widgetAppearance, setWidgetAppearance] =
@@ -43,8 +44,13 @@ function App() {
     dateLabel: false,
     dateTitle: false,
   });
+  const [openCollapse, setOpenCollapse] = useState(true);
   useEffect(() => {
-    setShowButton(true);
+    if (isFirstRender) {
+      setIsFirstRender(false);
+    } else {
+      setShowButton(true);
+    }
   }, [deliveryDate, storePickup, widgetPosition, widgetAppearance]);
   const handleSubmit = () => {
     if (!deliveryDate?.title) {
@@ -96,37 +102,57 @@ function App() {
           setWidgetAppearance={setWidgetAppearance}
         />
         <Card background="bg-surface">
-          <div className="flex-start">
-            <Icon source={TextIcon} tone="textCritical" />
-            <Text as="span" variant="headingSm" tone="critical">
-              Widget text
-            </Text>
-          </div>
-          <Tabs
-            tone="textCritical"
-            tabs={TAB}
-            selected={selectedTab}
-            onSelect={(tab) => {
-              setSelectedTab(tab);
+          <div
+            className="flex-between mb-20"
+            onClick={() => {
+              setOpenCollapse(!openCollapse);
             }}
-            fitted
           >
-            {selectedTab === TAB_VALUE.DELIVERY_DATE && (
-              <DeliveryDateTab
-                deliveryDate={deliveryDate}
-                deliveryError={deliveryError}
-                setDeliveryDate={setDeliveryDate}
-                widgetAppearance={widgetAppearance}
+            <div className="flex-start">
+              <Icon source={TextIcon} tone="textCritical" />
+              <Text as="span" variant="headingSm" tone="critical">
+                Widget text
+              </Text>
+            </div>
+            <div>
+              <Icon
+                source={!openCollapse ? CaretDownIcon : CaretUpIcon}
+                tone="textCritical"
               />
-            )}
-            {selectedTab === TAB_VALUE.STORE_PICKUP && (
-              <StorePickupTab
-                widgetAppearance={widgetAppearance}
-                storePickup={storePickup}
-                setStorePickup={setStorePickup}
-              />
-            )}
-          </Tabs>
+            </div>
+          </div>
+          <Collapsible
+            open={openCollapse}
+            id="basic-collapsible"
+            transition={{ duration: "500ms", timingFunction: "ease-in-out" }}
+            expandOnPrint
+          >
+            <Tabs
+              tone="textCritical"
+              tabs={TAB}
+              selected={selectedTab}
+              onSelect={(tab) => {
+                setSelectedTab(tab);
+              }}
+              fitted
+            >
+              {selectedTab === TAB_VALUE.DELIVERY_DATE && (
+                <DeliveryDateTab
+                  deliveryDate={deliveryDate}
+                  deliveryError={deliveryError}
+                  setDeliveryDate={setDeliveryDate}
+                  widgetAppearance={widgetAppearance}
+                />
+              )}
+              {selectedTab === TAB_VALUE.STORE_PICKUP && (
+                <StorePickupTab
+                  widgetAppearance={widgetAppearance}
+                  storePickup={storePickup}
+                  setStorePickup={setStorePickup}
+                />
+              )}
+            </Tabs>
+          </Collapsible>
         </Card>
       </div>
     </>
